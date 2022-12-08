@@ -15,7 +15,7 @@ def auroc_improvement(auroc_original, auroc_improv, std_dev_original, std_dev_im
     
     #relative standard errors for both models
     error_original = (std_dev_original / math.sqrt(folds)) / auroc_original
-    error_improv = (std_def_improv / math.sqrt(folds)) / auroc_improv
+    error_improv = (std_dev_improv / math.sqrt(folds)) / auroc_improv
     
     #combined relative error in auroc improvement
     combined_error = (error_original + error_improv) * delta

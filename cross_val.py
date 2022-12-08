@@ -13,15 +13,16 @@ def auroc_folds(binary_true_list, prediction_score_list):
     	auc = metrics.roc_auc_score(binary_true_list[i], prediction_score_list[i])
     	auc_list.append(auc)
     
+    mean_score = round(np.mean(auc_list), 3)
     median_score = round(np.median(auc_list), 3)
     std_dev = round(np.std(auc_list), 3)
     std_error = round(std_dev/np.sqrt(std_dev), 3)
     
-    return median_score, std_dev, std_error
+    return mean_score, median_score, std_dev, std_error
 
 
 #Calculate the mean roc curve and the roc_curves 1 std dev above/below the mean
-def roc_folds(binary_true_list, prediction_score_list):
+def mean_roc_curve(binary_true_list, prediction_score_list):
     tprs = [] #list of true positive rates from each fold
     aucs = [] #auroc score for each fold
     folds = len(binary_true_list)
@@ -47,4 +48,4 @@ def roc_folds(binary_true_list, prediction_score_list):
     tprs_upper = np.minimum(mean_tpr + std_tpr, 1)
     tprs_lower = np.maximum(mean_tpr - std_tpr, 0)
     
-    return mean_tpr, tprs_upper, tprs_lower
+    return mean_tpr, tprs_upper, tprs_lower, mean_fpr

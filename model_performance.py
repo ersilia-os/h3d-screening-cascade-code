@@ -13,7 +13,6 @@ def auroc_score(binary_true, prediction_score):
 
 #Compare true labels with binarised predictions
 def confusion_plot(binary_true, binary_prediction):
-    class_names = ['Inactives (0)', 'Actives (1)']
-    confusion = metrics.confusion_matrix(binary_true, binary_prediction, labels = class_names)
+    confusion = metrics.confusion_matrix(binary_true, binary_prediction)
     return confusion
     
